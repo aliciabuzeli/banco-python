@@ -1,0 +1,183 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fonte padrão e plano de fundo geral */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #ffeef4;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Cabeçalho */
+header {
+    background-color: #ff69b4;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Container principal */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    background: #fff0f5;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+}
+
+main h2 {
+    margin-bottom: 20px;
+    color: #c2185b;
+    border-bottom: 2px solid #f8bbd0;
+    padding-bottom: 10px;
+}
+
+/* Formulários */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #880e4f;
+}
+
+input, button, select {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1em;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #ff69b4;
+    box-shadow: 0 0 5px #ffb6c1;
+}
+
+/* Botões */
+button {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #e91e63;
+}
+
+a {
+    text-decoration: none;
+    color: #e91e63;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #c2185b;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #f8bbd0;
+}
+
+table th {
+    background-color: #f48fb1;
+    color: white;
+}
+
+table tr:nth-child(even) {
+    background-color: #fce4ec;
+}
+
+table td form {
+    display: inline;
+}
+
+.flash-messages {
+    margin-bottom: 20px;
+}
+
+.flash {
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.flash.success {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+}
+
+.flash.error {
+    background-color: #ffcdd2;
+    color: #c62828;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    table tr {
+        margin-bottom: 15px;
+    }
+
+    table td {
+        padding-left: 50%;
+        position: relative;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 10px;
+        top: 12px;
+        font-weight: bold;
+        color: #880e4f;
+    }
+}
