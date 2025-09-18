@@ -5,8 +5,9 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'sua_chave_secreta_aqui'
 
+
 host = 'localhost'
-database = r'C:\Users\Aluno\Downloads\BANCO (4)\BANCO.FDB'
+database = r'C:\Users\Aluno\Downloads\BANCO (5)\BANCO.FDB'
 user = 'sysdba'
 passaword = 'sysdba'
 
@@ -94,6 +95,45 @@ def deletar(id):
         cursor.close()  # Fecha o cursor independentemente do resultado
 
     return redirect(url_for('index'))  # Redireciona para a página principal
+
+@app.route('/lista_usuario')
+def lista_usuario():
+    cursor = con.cursor()
+    cursor.execute("SELECT id_usuarios, nome, email, senha FROM usuario")
+    usuarios = cursor.fetchall()
+    cursor.close()
+
+    return render_template('usuarios.html', usuarios=usuarios)
+
+@app.route('/editarusuario/<int:id>', methods=['GET', 'POST'])
+def editarusuario(id):
+    cursor = con.cursor() #abre cursor
+    cursor.execute("select id_usuario, nome, email, senha from usuario where id_usuario = ?", (id,))
+    usuario = cursor.fetchone()
+
+    if not usuario:
+        cursor.close()
+        flash("usuario não encontado")
+        return redirect(url_for('index'))
+
+    if request.method == 'POST':
+        nome = request.form['nome']
+        email = request.form['email']
+        senha = request.form['senha']
+
+        cursor.execute("update usuario set nome = ?, email = ?, senha = ? where id_usuario = ?",
+                       (nome, email, senha, id))
+        con.commit()
+        flash("usuario atualizado com sucesso")
+        return redirect(url_for('index'))
+
+    cursor.close()
+    return render_template('editarusuario.html', usuario = usuario, titulo='editarusuarios')
+
+
+
+
+
 
 
 
