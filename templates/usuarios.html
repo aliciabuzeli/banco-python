@@ -11,13 +11,10 @@
         <h1>Biblioteca</h1>
         <nav>
             <a href="{{ url_for('index') }}">Home</a>
-            <a href="{{ url_for('novo') }}">Adicionar Livro</a>
-            <a href="{{ url_for('lista_usuario') }}">Ver Usuários</a>
-            <a href="{{ url_for('lista_usuario') }}">Cadastrar</a>
         </nav>
     </header>
     <main>
-        <h2>Lista de Livros</h2>
+        <h2>Lista de Usuários</h2>
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 <div class="flash-messages">
@@ -31,25 +28,24 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Ano de Publicação</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Senha</th>
                     <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
-                {% for livro in livros %}
+                {% for usuario in usuarios %}
                 <tr>
-                    <td>{{ livro[0] }}</td>
-                    <td>{{ livro[1] }}</td>
-                    <td>{{ livro[2] }}</td>
-                    <td>{{ livro[3] }}</td>
+                    <td>{{ usuario[0] }}</td>
+                    <td>{{ usuario[1] }}</td>
+                    <td>{{ usuario[2] }}</td>
+                    <td>{{ usuario[3] }}</td>
                     <td>
-                        <a href="{{ url_for('editar', id=livro[0]) }}">Editar</a>
-                        <form action="{{ url_for('deletar', id=livro[0]) }}" method="post" style="display:inline;">
-                            <button type="submit">Deletar</button>
-                        </form>
+                        <a href="{{ url_for('editarusuario', id=usuario[0]) }}">Editar</a>
+                        <a href="{{ url_for('editarusuario', id=usuario[0]) }}">Deletar</a>
                     </td>
+
                 </tr>
                 {% endfor %}
             </tbody>
